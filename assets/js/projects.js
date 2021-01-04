@@ -37,7 +37,7 @@ function addProject(project) {
     td = document.createElement("td");
     var a = document.createElement("a");
     a.appendChild(document.createTextNode(project.name));
-    a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + project.start);
+    project.links.forEach((link) => { if (link.type == "start") a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + link.value); })
     a.setAttribute("title", "Open " + project.name);
     a.setAttribute("target", "_blank");
     td.appendChild(a);
@@ -45,7 +45,11 @@ function addProject(project) {
     tr.appendChild(td);
 
     td = document.createElement("td");
-    td.appendChild(document.createTextNode(project.name.substr(0, 64)));
+    if (project.description.length > 64) {
+        td.appendChild(document.createTextNode(project.description.substr(0, 64) + "..."));
+    } else {
+        td.appendChild(document.createTextNode(project.description));
+    }
     td.className = "projectList-description";
     tr.appendChild(td);
 
@@ -54,7 +58,7 @@ function addProject(project) {
         switch (link.type) {
             case "start":
                 var a = document.createElement("a");
-                a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + project.start);
+                a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + link.value);
                 a.setAttribute("title", "Open " + project.name);
                 a.setAttribute("target", "_blank");
                 var img = document.createElement("img");
