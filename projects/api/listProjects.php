@@ -1,46 +1,29 @@
 <?php
 
     header("Content-Type: application/json", true, 200);
-    echo json_encode(array(
-        array(
-            "name" => "project A",
-            "icon" => "",
-            "featured" => true,
-            "description" => "blah blah blah",
-            "dir" => "project_a",
-            "links" => array(
-                array(
-                    "type" => "start",
-                    "value" => "index.html"
-                ),
-                array(
-                    "type" => "github",
-                    "value" => "https://github.com/jimmybear217/jimmybear217.dev"
-                )
-            )
-        ),
-        array(
-            "name" => "project B",
-            "icon" => "",
-            "featured" => true,
-            "description" => "blah blah blah",
-            "dir" => "project_b",
-            "links" => array(
-                array(
-                    "type" => "start",
-                    "value" => "index.html"
-                ),
-                array(
-                    "type" => "github",
-                    "value" => "https://github.com/jimmybear217/jimmybear217.dev"
-                )
-            )
-        )
-    ));
 
-    /**
-     * @todo list the contents of each folder in the project repository to read
-     * the mamifest of each and dynamically generate this list
-     */
+    $projectOutput = array();
+    $repo = __DIR__ . "/../repo";
+    $dirs = scandir($repo);
+    foreach($dirs as $folder) {
+        if (str_replace(".", "", $folder) == "")
+            continue;
+        if (file_exists($repo . "/" . $folder . "/project-manifest.json")) {
+            $manifest = json_decode(file_get_contents($repo . "/" . $folder . "/project-manifest.json"), true);
+            $project = array(
+                "name" => $manifest["name"],
+                "description" => $manifest["description"],
+                "icon" => $manifest["icon"],
+                "featured" => (isset($manifest["featured"]) ? boolval($manifest["featured"]) : false),
+                "dir" => $folder,
+                "links" => $manifest["links"]
+            );
+            array_push($projectOutput, $project);
+        }
+    }
+
+
+    echo json_encode($projectOutput);
+
 
 ?>
