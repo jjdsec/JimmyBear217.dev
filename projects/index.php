@@ -4,9 +4,12 @@
             <p>Here are some of my projects, available for demo</p>
         </header>
         <section>
-            <ul class="icons-horizontal">
-                <li><a href="https://github.com/jimmybear217" target="_blank" title="Open my Github Profile"><img src="/assets/img/github1600.png" height="72" width="72" alt="GitHub"></a></li>
-                <li><a href="/projects" title="Open my Project Portfolio"><img src="/assets/img/projects.svg" height="72" width="72" alt="Projects"></a></li>
-            </ul>
+            <h2>Featured</h2>
+            <ul id="featuredProjects" class="icons-horizontal loading"></ul>
         </section>
+        <section>
+            <h2>See all hosted projects</h2>
+            <table id="allProjects" class="loading"></table>
+        </section>
+        <script src="/assets/js/projects.js" async></script>
 <?php include_once(__DIR__ . "/../assets/inc/footer.inc.php"); ?>
