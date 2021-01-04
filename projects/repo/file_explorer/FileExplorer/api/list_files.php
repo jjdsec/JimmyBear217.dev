@@ -11,7 +11,7 @@
         $username = $token["0"];
         $token = $token["1"];
 
-        $correct = base64_encode((date("Y") + date("m") + date("d")) . "fsdkjfhdk" . $username);
+        $correct = base64_encode((date("Y", time()) + date("m", time()) + date("d", time())) . "fsdkjfhdk" . $username);
         
         if ($token != $correct){
             die("Wrong token");
