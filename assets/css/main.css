@@ -17,9 +17,12 @@ header {
 }
 
 header {
-    padding: 30vh 10%;
     background: url("/assets/img/bg-3.jpg") orange no-repeat center;
     background-size: cover;
+}
+
+header.largeHeader {
+    padding: 30vh 10%;
 }
 
 footer {

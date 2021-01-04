@@ -11,7 +11,7 @@
         <nav>
             <h2>JimmyBear217.dev</h2>
             <ul id="top-nav">
-                <li><a href="/index" data-pagename="home">Home</a></li>
+                <li><a href="/" data-pagename="home">Home</a></li>
                 <li><a href="/projects" data-pagename="projects">Projects</a></li>
                 <li><a href="/contact" data-pagename="contact">Contact Me</a></li>
             </ul>

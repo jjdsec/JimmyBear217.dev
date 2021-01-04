@@ -3,11 +3,6 @@ function setCurrentMenuItem() {
     // 1. load components
     var nav = document.getElementById("top-nav");
     var url = document.location.pathname;
-    url = url.replace("index.html", "");
-    url = url.replace("index.php", "");
-    url = url.replace(".html", "");
-    url = url.replace(".php", "");
-    url = url.replace("/", "");
     var page = false;
     var newlink = "/";
     var title = document.getElementsByTagName("title")[0].innerText;
@@ -15,17 +10,22 @@ function setCurrentMenuItem() {
 
     // 2. interpret url
     switch (url) {
-        case "":
+        case "/":
+        case "/index.php":
             page = "home";
             newlink = "/";
             break;
 
-        case "projects":
+        case "/projects":
+        case "/projects/":
+        case "/projects/index.php":
             page = "projects";
             newlink = "/projects";
             break;
 
-        case "contact":
+        case "/contact":
+        case "/contact/":
+        case "/contact/index.php":
             page = "contact";
             newlink = "/contact";
             break;

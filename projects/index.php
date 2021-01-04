@@ -1,7 +1,7 @@
-<?php include_once(__DIR__ . "/assets/inc/header.inc.php"); ?>
-        <header class="largeHeader">
-            <h1>JimmyBear217 - Web Engineer</h1>
-            <p>Using today's web technologies to create tomorrow's applications</p>
+<?php include_once(__DIR__ . "/../assets/inc/header.inc.php"); ?>
+        <header>
+            <h1>My Projects</h1>
+            <p>Here are some of my projects, available for demo</p>
         </header>
         <section>
             <ul class="icons-horizontal">
@@ -9,4 +9,4 @@
                 <li><a href="/projects" title="Open my Project Portfolio"><img src="/assets/img/projects.svg" height="72" width="72" alt="Projects"></a></li>
             </ul>
         </section>
-<?php include_once(__DIR__ . "/assets/inc/footer.inc.php"); ?>
+<?php include_once(__DIR__ . "/../assets/inc/footer.inc.php"); ?>
