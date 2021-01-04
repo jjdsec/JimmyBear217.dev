@@ -20,9 +20,14 @@
         die("Missing token");
     }
 
-    $token = "token";
+    $token = null;
     $path = realpath($path);
+    $chroot = "/home/u541886749/domains/jimmybear217.dev/public_html/projects/";
     header("Content-Type: text/json");
+    if (substr($path, 0, strlen($chroot)) != $chroot && $username == "DemoUser") {
+        http_response_code(403);
+        die(json_encode(array("status" => "error","message" => "this user cannot access this directory")));
+    }
 
     if (is_dir($path)){
 

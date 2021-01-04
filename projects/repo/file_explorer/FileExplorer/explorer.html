@@ -109,10 +109,25 @@
         }
         console.log("moving to : " + target);
         document.getElementById("filesystem").innerHTML = "<div id='loader'></div>";
-        $.get("api/list_files.php?path=" + target + "&token=" + document.body.getAttribute("data-username") + ":" + document.body.getAttribute("data-key"), (data, status, xhr) => {
-            filesystem_update(data);
-        });
+        document.getElementById("path").setAttribute("data-lastPath", document.getElementById("path").innerHTML);
         document.getElementById("path").innerHTML = target;
+        fetch("api/list_files.php?path=" + target + "&token=" + document.body.getAttribute("data-username") + ":" + document.body.getAttribute("data-key"))
+            .then((response) => {
+                if (response.status == 200) {
+                    response.json().then((responseJson) => {
+                        filesystem_update(responseJson);
+                    });
+                } else {
+                    response.json().then((responseJson) => {
+                        alert(JSON.stringify(responseJson))
+                        if (document.getElementById("path").hasAttribute("data-lastPath")) {
+                            filesystem_move(document.getElementById("path").getAttribute("data-lastPath"));
+                        } else {
+                            filesystem_move();
+                        }
+                    });
+                }
+            })
     }
 
     function open_file(path) {
