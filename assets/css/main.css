@@ -10,15 +10,53 @@ header {
     text-align: center;
     margin: 0;
     padding: 10%;
-    border: 1px solid;
+    color: #2a2a2a;
+    background-color: white;
+    border-top: 1px solid currentColor;
 }
 
 header {
     padding: 30vh 10%;
-    background-image: url("/assets/img/bg.png") gray;
-    background-position: center;
-    background-origin: border-box;
+    background: url("/assets/img/bg-3.jpg") orange no-repeat center;
     background-size: cover;
-    background-clip: border-box;
-    background-repeat: no-repeat;
+}
+
+footer {
+    background-color: #2a2a2a;
+    color: lightgray;
+    text-decoration: none;
+    display: block;
+    padding: 3% 5%;
+    text-align: right;
+}
+
+footer a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+.icons-horizontal {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.icons-horizontal li {
+    display: inline-block;
+    padding: 2%;
+    border-bottom: 1px solid white;
+    transition-duration: .5s
+}
+
+.icons-horizontal li:hover {
+    border-bottom: 1px solid currentColor;
+}
+
+.icons-horizontal img {
+    width: 72px;
+}
+
+.icons-horizontal a {
+    text-decoration: none;
+    color: currentColor;
 }
