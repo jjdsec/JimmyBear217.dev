@@ -66,6 +66,23 @@ footer a {
     color: currentColor;
 }
 
+table {
+    margin: auto;
+}
+
+table img {
+    vertical-align: bottom
+}
+
+table .projectList-Links img {
+    margin: 5%;
+}
+
+table .projectList-name a {
+    color: #F8B109;
+    font-weight: bold;
+}
+
 .loading {
     width: 100px;
     height: 100px;
