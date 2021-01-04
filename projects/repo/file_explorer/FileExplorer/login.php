@@ -25,7 +25,8 @@
         if ($_POST["submit"] == "Login"){
 
             $users = array(
-                "JimmyBear217" => "bfaf8e04f35b2bc33cf8fb03d9377964"
+                "JimmyBear217" => "bfaf8e04f35b2bc33cf8fb03d9377964",
+                "DemoUser" => "86a8b9ded31796c99d3cd6336609bc88", // SuperSecurePassword
             );
 
             if ($password == $users[$username]){
@@ -34,7 +35,7 @@
                 //setcookie("key","fsdkjfhdk",time()+60+60);
                 header("Location: login_success.html");
                 include("login_success.html");
-                setcookie("explorer_access",base64_encode((date("Y") + date("m") + date("d")) . "fsdkjfhdk" . $_POST["username"]),time()+60*60*6,realpath($_SERVER["PHP_SELF"]),$_SERVER["SERVER_NAME"],false,false);
+                setcookie("explorer_access",base64_encode((date("Y", time()) + date("m", time()) + date("d", time())) . "fsdkjfhdk" . $_POST["username"]),time()+60*60*6,realpath($_SERVER["PHP_SELF"]),$_SERVER["SERVER_NAME"],false,false);
                 setcookie("explorer_username",$username,time()+60*60*6,realpath($_SERVER["PHP_SELF"]),$_SERVER["SERVER_NAME"],false,false);
             }else{
                 http_response_code(401);
