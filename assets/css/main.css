@@ -50,7 +50,7 @@ footer a {
 }
 
 .icons-horizontal li:hover {
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid #F8B109;
 }
 
 .icons-horizontal img {

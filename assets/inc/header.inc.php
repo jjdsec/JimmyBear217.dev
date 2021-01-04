@@ -10,9 +10,10 @@
     <body>
         <nav>
             <h2>JimmyBear217.dev</h2>
-            <ul>
-                <li><a href="/index">Home</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/contact">Contact Me</a></li>
+            <ul id="top-nav">
+                <li><a href="/index" data-pagename="home">Home</a></li>
+                <li><a href="/projects" data-pagename="projects">Projects</a></li>
+                <li><a href="/contact" data-pagename="contact">Contact Me</a></li>
             </ul>
+            <script src="/assets/js/menu.js" async></script>
         </nav>
