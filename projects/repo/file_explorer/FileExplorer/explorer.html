@@ -110,6 +110,8 @@
         console.log("moving to : " + target);
         document.getElementById("filesystem").innerHTML = "<div id='loader'></div>";
         document.getElementById("path").setAttribute("data-lastPath", document.getElementById("path").innerHTML);
+        // replaced ajax XHR by ES6/7 fetch in order to implement access control on 01/04/2021
+        // project was released before that in 04/2018
         document.getElementById("path").innerHTML = target;
         fetch("api/list_files.php?path=" + target + "&token=" + document.body.getAttribute("data-username") + ":" + document.body.getAttribute("data-key"))
             .then((response) => {
@@ -119,7 +121,7 @@
                     });
                 } else {
                     response.json().then((responseJson) => {
-                        alert(JSON.stringify(responseJson))
+                        alert(responseJson.status + ": " + responseJson.message)
                         if (document.getElementById("path").hasAttribute("data-lastPath")) {
                             filesystem_move(document.getElementById("path").getAttribute("data-lastPath"));
                         } else {
