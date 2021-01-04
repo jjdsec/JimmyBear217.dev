@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>File Explorer - Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style type="text/css">body {background-color: #ffe}body,table,form{margin:auto;text-align:center}h1{margin:10%;margin-bottom:1%}h2{margin:3% 10%}form{background-color:#fff;border:1px solid #000;padding:3%;width:max-content}input{margin:1em}</style>
+        <link rel="manifest" href="manifest.json">
+        <link rel="icon" href="img/folder-64.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>File Explorer</h1>
+        <h2>Login</h2>
+        <div class="alert">Something went wrong. Please try again.</div>
+        <form method="POST" action="login.php">
+            <label for="username">Username</label>
+            <input name="username" placeholder="username" type="text" autocomplete="username" required>
+            <br>
+            <label for="password">Password</label>
+            <input name="password" placeholder="password" type="password" autocomplete="password" required>
+            <br>
+            <!--<input type="submit" name="submit" value="Register">-->
+            <input type="submit" name="submit" value="Login">
+        </form>
+    </body>
+</html>

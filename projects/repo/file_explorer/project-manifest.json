@@ -1,0 +1,16 @@
+{
+    "name": "FileExplorer",
+    "description": "This application allows to explore the filesystem of a remote server to list, read and download files and directories using php's native file system interation tools.",
+    "author": "JimmyBear217",
+    "published": "04/29/2018",
+    "icon": "FileExplorer/img/folder-128.png",
+    "links": [{
+            "type": "start",
+            "value": "FileExplorer/explorer.php"
+        },
+        {
+            "type": "github",
+            "value": "https://github.com/jimmybear217/FileExplorer"
+        }
+    ]
+}

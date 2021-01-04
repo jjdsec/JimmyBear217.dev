@@ -1,0 +1,51 @@
+{
+    "name": "FileExplorer",
+    "short_name": "FileExplorer",
+    "lang": "en-US",
+    "author": "Jimmy Gorokhoff",
+    "publication_date": "Apr 29 2018",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffe",
+    "theme_color": "#ffe",
+    "orientation": "landscape-primary",
+    "description": "This project is a file exploration service, protected by login with hard-coded user mangement, that works on an API concept.",
+    "icons": [
+        {
+            "src": "img/folder-16.png",
+            "sizes": "16x16",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        },{
+            "src": "img/folder-24.png",
+            "sizes": "24x24",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        },{
+            "src": "img/folder-32.png",
+            "sizes": "32x32",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        },{
+            "src": "img/folder-64.png",
+            "sizes": "64x64",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        },{
+            "src": "img/folder-128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        },{
+            "src": "img/folder-256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        },{
+            "src": "img/folder-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "credit": "https://www.flaticon.com/authors/smashicons"
+        }
+    ]
+}

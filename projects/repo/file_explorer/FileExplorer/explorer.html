@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>File Explorer</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link rel="manifest" href="manifest.json">
+        <link rel="icon" href="img/folder-64.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <h1 id="name"></h1>
+            <pre id="path" onClick="filesystem_move(prompt('Where do you want to go?'));"></pre>
+        </header>
+        <div id="filesystem">
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+
+    // check auth
+    //PHP: md5(time(). "welcome".$username)
+
+    function check_auth() {
+        var username = "explorer_username";
+        var nameEQ = username + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) username = c.substring(nameEQ.length, c.length);
+        }
+        if (username == "explorer_username"){
+            console.error("Authentification failed (1)");
+            window.location.href = "login_error.html";
+            document.body.innerHTML = "<div id='loader'></div>";
+        }
+        
+        var access_key = "explorer_access";
+        var nameEQ = access_key + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) access_key = c.substring(nameEQ.length, c.length);
+        }
+        if (access_key == "explorer_access") {
+            console.error("Authentification failed (2)");
+            window.location.href = "login_error.html";
+            document.body.innerHTML = "<div id='loader'></div>";
+        }
+        var d = new Date();
+        access_key = access_key.replace('%3D%3D',"==");
+        if (access_key != btoa(d.getFullYear() + d.getMonth() + d.getDate() + 1 + "fsdkjfhdk" + username)){
+            console.error("Authentification failed (3)");
+            window.location.href = "login_error.html";
+            document.body.innerHTML = "<div id='loader'></div>";
+        }
+
+        document.body.setAttribute("data-username",username);
+        document.body.setAttribute("data-key",access_key);
+    }
+    check_auth();
+    setTimeout(() => {
+        check_auth();
+    }, 60000);
+
+    function filesystem_update(fs_data_array) {
+        var fs_div = document.getElementById("filesystem");
+        fs_div.innerHTML = "";
+
+        for (var i in fs_data_array["files"]) {
+            console.log(fs_data_array["files"][i]);
+            var link = document.createElement("a");
+            link.className = "file_card";
+            if (fs_data_array["files"][i]["type"] == "dir"){
+                link.appendChild(document.createTextNode(fs_data_array["files"][i]["name"] + "/"));
+                if (fs_data_array["files"][i]["name"] == ".."){
+                    link.setAttribute("href", "javascript:filesystem_move_up(1)");
+                }else{
+                    link.setAttribute("href", "javascript:filesystem_move(\"" + fs_data_array["files"][i]["path"] + "\")");
+                }
+            }else{
+                link.appendChild(document.createTextNode(fs_data_array["files"][i]["name"]));
+                link.setAttribute("href", "javascript:open_file(\"" + fs_data_array["files"][i]["path"] + "\")");
+            }
+            fs_div.appendChild(link);
+        }
+        
+        document.getElementById("path").innerHTML = fs_data_array["local"]["path"];
+        document.getElementById("name").innerHTML = fs_data_array["local"]["basename"];
+
+    }
+
+    function filesystem_move_up(times = 1) {
+        var str = document.getElementById("path").innerHTML;
+        for (let i = 0; i < times; i++) {
+            str = str.slice(0, (str.lastIndexOf("/")+1));
+        }
+        filesystem_move(str);
+    }
+
+    function filesystem_move(target) {
+        if (target == null){
+            target = document.getElementById("path").innerHTML;
+        }
+        console.log("moving to : " + target);
+        document.getElementById("filesystem").innerHTML = "<div id='loader'></div>";
+        $.get("api/list_files.php?path=" + target + "&token=" + document.body.getAttribute("data-username") + ":" + document.body.getAttribute("data-key"), (data, status, xhr) => { filesystem_update(data); });
+        document.getElementById("path").innerHTML = target;
+    }
+
+    function open_file(path) {
+        window.open("api/show_file.php?path=" + path);
+    }
+
+    filesystem_move(".");
+
+</script>
+
+<style type="text/css">
+
+    body {
+        background-color: #ffe;
+    }
+
+    header {
+        text-align:center;
+        width:100%;
+    }
+
+    table {
+        margin:auto;
+        border: #000 solid 1px;
+    }
+
+    td {
+        background-color:#fff;
+        border:#000 solid 1px;
+        color: #000;
+    }
+    th {
+        background-color: #000;
+        border: #000 solid 1px;
+        color: #fff;
+    }
+
+    #filesystem {
+        padding:5%;
+        border: 1px solid #000;
+    }
+
+    .file_card {
+        display:inline-block;
+        border:#000 solid 1px;
+        margin:1%;
+        padding:1%;
+        cursor: pointer;
+        word-wrap: break-word;
+    }
+
+    /* ---- load ---- */
+    #loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        margin: 20vh auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+</style>
