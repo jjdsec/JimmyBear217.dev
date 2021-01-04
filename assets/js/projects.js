@@ -6,12 +6,12 @@ function addFeaturedProject(project) {
     repo = "repo"
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.setAttribute("href", "/projects/" + repo + "/" + project.path + "/" + project.start);
+    project.links.forEach((link) => { if (link.type == "start") a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + link.value); })
     a.setAttribute("title", "Open " + project.name);
     a.setAttribute("target", "_blank");
     li.appendChild(a);
     var img = document.createElement("img");
-    img.setAttribute("src", "/projects/" + repo + "/" + project.path + "/" + project.icon);
+    img.setAttribute("src", "/projects/" + repo + "/" + project.dir + "/" + project.icon);
     img.setAttribute("height", "72");
     img.setAttribute("width", "72");
     img.setAttribute("alt", project.name);
@@ -27,7 +27,7 @@ function addProject(project) {
     var tr = document.createElement("tr");
     var td = document.createElement("td");
     var logo = document.createElement("img");
-    logo.setAttribute("src", "/projects/" + repo + "/" + project.path + "/" + project.icon);
+    logo.setAttribute("src", "/projects/" + repo + "/" + project.dir + "/" + project.icon);
     logo.setAttribute("height", "32");
     logo.setAttribute("width", "32");
     td.appendChild(logo);
@@ -37,7 +37,7 @@ function addProject(project) {
     td = document.createElement("td");
     var a = document.createElement("a");
     a.appendChild(document.createTextNode(project.name));
-    a.setAttribute("href", "/projects/" + repo + "/" + project.path + "/" + project.start);
+    a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + project.start);
     a.setAttribute("title", "Open " + project.name);
     a.setAttribute("target", "_blank");
     td.appendChild(a);
@@ -54,11 +54,11 @@ function addProject(project) {
         switch (link.type) {
             case "start":
                 var a = document.createElement("a");
-                a.setAttribute("href", "/projects/" + repo + "/" + project.path + "/" + project.start);
+                a.setAttribute("href", "/projects/" + repo + "/" + project.dir + "/" + project.start);
                 a.setAttribute("title", "Open " + project.name);
                 a.setAttribute("target", "_blank");
                 var img = document.createElement("img");
-                img.setAttribute("src", "/assets/img/launch.png");
+                img.setAttribute("src", "/assets/img/open-in-browser.svg");
                 img.setAttribute("height", "24");
                 img.setAttribute("width", "24");
                 img.setAttribute("alt", "Launch");
@@ -87,7 +87,7 @@ function addProject(project) {
                 a.setAttribute("title", "Visit the website for " + project.name);
                 a.setAttribute("target", "_blank");
                 var img = document.createElement("img");
-                img.setAttribute("src", "/assets/img/internet.png");
+                img.setAttribute("src", "/assets/img/world-wide-web.svg");
                 img.setAttribute("height", "24");
                 img.setAttribute("width", "24");
                 img.setAttribute("alt", "Website");
