@@ -1,8 +1,10 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 html,
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Prompt', sans-serif;
 }
 
 section,
@@ -10,9 +12,8 @@ header {
     text-align: center;
     margin: 0;
     padding: 10%;
-    color: #2a2a2a;
     background-color: white;
-    border-top: 1px solid currentColor;
+    border-top: 1px solid #2A2A2A;
 }
 
 header {
@@ -26,7 +27,7 @@ footer {
     color: lightgray;
     text-decoration: none;
     display: block;
-    padding: 3% 5%;
+    padding: 1.5em 2em;
     text-align: right;
 }
 
