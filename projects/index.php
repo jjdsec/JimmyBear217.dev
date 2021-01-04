@@ -10,6 +10,7 @@
         <section>
             <h2>See all hosted projects</h2>
             <table id="allProjects" class="loading"></table>
+            <p>Check back in soon as I update this list regularly</p>
         </section>
         <script src="/assets/js/projects.js" async></script>
 <?php include_once(__DIR__ . "/../assets/inc/footer.inc.php"); ?>

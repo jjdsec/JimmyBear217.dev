@@ -9,7 +9,7 @@
     </head>
     <body>
         <nav>
-            <h2>JimmyBear217.dev</h2>
+            <h2><a href="/">JimmyBear217.dev</a></h2>
             <ul id="top-nav">
                 <li><a href="/" data-pagename="home">Home</a></li>
                 <li><a href="/projects" data-pagename="projects">Projects</a></li>
