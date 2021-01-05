@@ -4,7 +4,7 @@ A multiuser PHP/JS Tool to access a server's fileSystem originally finished on A
 
 ## Update 2021.04.01
 
-This software is being updated in 2021 with better technologies and security. changes includes:
+This software has been updated with better technologies and security. changes includes:
 
 1. Replaced the ajax requests with fetch
 2. Implemented access control by scope as part of user management
