@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Prompt', sans-serif;
+    min-width: 300px;
 }
 
 section,
@@ -95,4 +96,21 @@ table .projectList-name a {
     background-repeat: no-repeat;
     margin: auto;
     background-size: 72px;
+}
+
+.titleDash {
+    display: inline;
+}
+
+.reverseTitleDash {
+    display: none;
+}
+
+@media screen and (max-width: 400px) {
+    .titleDash {
+        display: none;
+    }
+    .reverseTitleDash {
+        display: inline;
+    }
 }

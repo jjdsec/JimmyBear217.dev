@@ -1,6 +1,6 @@
 <?php include_once(__DIR__ . "/assets/inc/header.inc.php"); ?>
         <header class="largeHeader">
-            <h1>JimmyBear217 - Web Engineer</h1>
+            <h1>JimmyBear217<span class='titleDash'> - </span><br class='reverseTitleDash' />Web Engineer</h1>
             <p>Using today's web technologies to create tomorrow's applications</p>
         </header>
         <section>

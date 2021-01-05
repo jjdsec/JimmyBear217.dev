@@ -49,3 +49,36 @@ nav ul li a.current {
     border-bottom: 1px solid #F8B109;
     color: #F8B109;
 }
+
+nav #nav-btn {
+    height: 32px;
+    width: 32px;
+    display: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    nav h2 {
+        margin-bottom: 2.5%;
+    }
+    nav #nav-btn {
+        display: block;
+        position: absolute;
+        top: 1.4em;
+        right: 1.1em;
+    }
+    nav ul {
+        display: none;
+        background-color: white;
+        position: revert;
+        padding-bottom: 1%;
+        margin: 0;
+    }
+    nav ul.menu-showing {
+        display: block;
+    }
+    nav ul li {
+        display: block;
+        margin-right: 5%;
+    }
+}

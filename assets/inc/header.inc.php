@@ -10,6 +10,7 @@
     <body>
         <nav>
             <h2><a href="/">JimmyBear217.dev</a></h2>
+            <img id="nav-btn" src="/assets/img/menu.png" height="32" width="32" onClick="toggleMenu()">
             <ul id="top-nav">
                 <li><a href="/" data-pagename="home">Home</a></li>
                 <li><a href="/projects" data-pagename="projects">Projects</a></li>

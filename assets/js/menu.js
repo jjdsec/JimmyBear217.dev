@@ -55,3 +55,23 @@ function setCurrentMenuItem() {
 }
 
 setCurrentMenuItem();
+
+function toggleMenu(force = "") {
+    if (force != "") {
+        if (force == "open") {
+            if (document.getElementById("top-nav").classList.contains("menu-showing")) {
+                document.getElementById("top-nav").classList.remove("menu-showing");
+            }
+        } else if (force == "close") {
+            if (!document.getElementById("top-nav").classList.contains("menu-showing")) {
+                document.getElementById("top-nav").classList.remove("menu-showing");
+            }
+        }
+    } else {
+        if (document.getElementById("top-nav").classList.contains("menu-showing")) {
+            document.getElementById("top-nav").classList.remove("menu-showing");
+        } else {
+            document.getElementById("top-nav").classList.add("menu-showing");
+        }
+    }
+}
