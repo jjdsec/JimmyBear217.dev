@@ -18,7 +18,7 @@ header {
 }
 
 header {
-    background: url("/assets/img/bg-3.jpg") orange no-repeat center;
+    background: url("/assets/img/bg-3.jpg") #F8B109 no-repeat center;
     background-size: cover;
     padding: 5vh 10%;
 }
