@@ -6,7 +6,7 @@
     "icon": "FileExplorer/assets/img/folder-128.png",
     "links": [{
             "type": "start",
-            "value": "FileExplorer/index.html"
+            "value": "FileExplorer/index.php"
         },
         {
             "type": "github",
