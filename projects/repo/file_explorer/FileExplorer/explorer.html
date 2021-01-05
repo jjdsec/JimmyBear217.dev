@@ -5,7 +5,7 @@
     <title>File Explorer</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="img/folder-64.png">
+    <link rel="icon" href="assets/img/folder-64.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -21,59 +21,27 @@
 </html>
 
 <script type="text/javascript">
-    // check auth
-    //PHP: md5(time(). "welcome".$username)
-
     function check_auth() {
-        var username = "explorer_username";
-        var nameEQ = username + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) username = c.substring(nameEQ.length, c.length);
-        }
-        if (username == "explorer_username") {
-            console.error("Authentification failed (1)");
-            window.location.href = "login_error.html";
-            document.body.innerHTML = "<div id='loader'></div>";
-        }
-
-        var access_key = "explorer_access";
-        var nameEQ = access_key + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) access_key = c.substring(nameEQ.length, c.length);
-        }
-        if (access_key == "explorer_access") {
-            console.error("Authentification failed (2)");
-            window.location.href = "login_error.html";
-            document.body.innerHTML = "<div id='loader'></div>";
-        }
-        var d = new Date();
-        access_key = access_key.replace('%3D%3D', "==");
-        if (access_key != btoa(d.getUTCFullYear() + d.getUTCMonth() + 1 + d.getUTCDate() + "fsdkjfhdk" + username)) {
-            console.error("Authentification failed (3)");
-            window.location.href = "login_error.html";
-            document.body.innerHTML = "<div id='loader'></div>";
-        }
-
-        document.body.setAttribute("data-username", username);
-        document.body.setAttribute("data-key", access_key);
+        fetch("api/check_login.php")
+            .then((response) => {
+                return response.text()
+            })
+            .then((responseText) => {
+                if (responseText != "1") {
+                    document.location.href = "index.php";
+                }
+            })
     }
     check_auth();
     setTimeout(() => {
         check_auth();
-    }, 60000);
+    }, 60000); // check login every 600 seconds (5 minutes)
 
     function filesystem_update(fs_data_array) {
         var fs_div = document.getElementById("filesystem");
         fs_div.innerHTML = "";
 
         for (var i in fs_data_array["files"]) {
-            console.log(fs_data_array["files"][i]);
             var link = document.createElement("a");
             link.className = "file_card";
             if (fs_data_array["files"][i]["type"] == "dir") {
@@ -105,29 +73,24 @@
 
     function filesystem_move(target) {
         if (target == null) {
-            target = document.getElementById("path").innerHTML;
+            target = document.getElementById("path").innerText;
         }
+        document.getElementById("path").setAttribute("data-pastTarget", document.getElementById("path").innerText)
         console.log("moving to : " + target);
         document.getElementById("filesystem").innerHTML = "<div id='loader'></div>";
-        document.getElementById("path").setAttribute("data-lastPath", document.getElementById("path").innerHTML);
-        // replaced ajax XHR by ES6/7 fetch in order to implement access control on 01/04/2021
-        // project was released before that in 04/2018
-        document.getElementById("path").innerHTML = target;
-        fetch("api/list_files.php?path=" + target + "&token=" + document.body.getAttribute("data-username") + ":" + document.body.getAttribute("data-key"))
+        fetch("api/list_files.php?path=" + target)
             .then((response) => {
                 if (response.status == 200) {
-                    response.json().then((responseJson) => {
-                        filesystem_update(responseJson);
-                    });
+                    response.json().then(filesystem_update);
+                    document.getElementById("path").innerText = target;
+                } else if (response.status == 401) {
+                    document.location.href = "index.html";
+                } else if (response.status == 418) {
+                    open_file(target);
                 } else {
-                    response.json().then((responseJson) => {
-                        alert(responseJson.status + ": " + responseJson.message)
-                        if (document.getElementById("path").hasAttribute("data-lastPath")) {
-                            filesystem_move(document.getElementById("path").getAttribute("data-lastPath"));
-                        } else {
-                            filesystem_move();
-                        }
-                    });
+                    response.text().then(alert);
+                    if (document.getElementById("path").hasAttribute("data-pastTarget"))
+                        filesystem_move(document.getElementById("path").getAttribute("data-pastTarget"))
                 }
             })
     }

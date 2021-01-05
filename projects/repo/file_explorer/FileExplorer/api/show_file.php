@@ -1,30 +1,36 @@
 <?php
 
+    session_start();
+    require_once(__DIR__ . "/../assets/inc/userList.inc.php");
+    require_once(__DIR__ . "/../assets/inc/checkLogin.inc.php");
+
+    if (!checkLogin()) {
+        header('WWW-Authenticate: OAuth realm="Access to fileExplorer"', true, 401);
+        header("Content-Type: text/plain", true);
+        die("invalid login");
+    }
+
     if (isset($_GET["path"])){
         $path = $_GET["path"];
     }else{
+        header("Content-Type: text/plain", true, 400);
         die("Missing Path");
     }
-
-    if (isset($_COOKIE["explorer_access"]) && isset($_COOKIE["explorer_username"])){
-        $token = $_COOKIE["explorer_access"];
-        $correct = base64_encode((date("Y", time()) + date("m", time()) + date("d", time())) . "fsdkjfhdk" . $_COOKIE["explorer_username"]);
-
-        if ($token != $correct){
-            die("Wrong token");
-        }
-    }else{
-        die("Missing token");
+    
+    $path = realpath($path);
+    $chroot = $userList[$_SESSION["username"]]["chroot"];
+    if (substr($path, 0, strlen($chroot)) != $chroot) {
+        header("Content-Type: text/plain", true, 403);
+        die("Sorry, you cannot access this ressource");
     }
 
-    if (substr($path, 0, strlen($chroot)) != $chroot && $username == $_COOKIE["explorer_username"]) {
-        header("Content-Type: text/json", true, 403);
-        die(json_encode(array("status" => "error","message" => "this user cannot access this directory")));
+    if (is_dir($path)) {
+        header("Content-Type: text/plain", true, 418);
+        die("This is a directory");
     }
 
     $mime = mime_content_type($path);
     header("Content-Type: " . $mime);
-    //var_dump(pathinfo($path));
     echo file_get_contents($path);
 
 ?>

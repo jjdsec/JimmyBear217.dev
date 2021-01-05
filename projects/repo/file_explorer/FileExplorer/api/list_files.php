@@ -1,32 +1,29 @@
 <?php
 
+    session_start();
+    require_once(__DIR__ . "/../assets/inc/userList.inc.php");
+    require_once(__DIR__ . "/../assets/inc/checkLogin.inc.php");
+
+    if (!checkLogin()) {
+        header('WWW-Authenticate: OAuth realm="Access to fileExplorer"', true, 401);
+        header("Content-Type: text/plain", true);
+        die("invalid login");
+    }
+
+
     if (isset($_GET["path"])){
         $path = $_GET["path"];
     }else{
+        header("Content-Type: text/plain", true, 400);
         die("Missing Path");
     }
 
-    if (isset($_GET["token"])){
-        $token = explode(":",$_GET["token"]);
-        $username = $token["0"];
-        $token = $token["1"];
-
-        $correct = base64_encode((date("Y", time()) + date("m", time()) + date("d", time())) . "fsdkjfhdk" . $username);
-        
-        if ($token != $correct){
-            die("Wrong token");
-        }
-    }else{
-        die("Missing token");
-    }
-
-    $token = null;
+    $token = "token";
     $path = realpath($path);
-    $chroot = "/home/u541886749/domains/jimmybear217.dev/public_html/projects/";
-    header("Content-Type: text/json");
-    if (substr($path, 0, strlen($chroot)) != $chroot && $username == "DemoUser") {
-        http_response_code(403);
-        die(json_encode(array("status" => "error","message" => "this user cannot access this directory")));
+    $chroot = $userList[$_SESSION["username"]]["chroot"];
+    if (substr($path, 0, strlen($chroot)) != $chroot) {
+        header("Content-Type: text/plain", true, 403);
+        die("Sorry, you cannot access this ressource");
     }
 
     if (is_dir($path)){
@@ -36,43 +33,47 @@
 
         $dirs = array();
         $files = array();
+        $exclusions = array(".");
 
         foreach ($files1 as $name) {
-            if ($name != ".." AND $name != "."){
-                //echo "<a href='list_files.php?path=" . $path . "/" . $name . "'>" . $name . "</a>";
-                if (is_dir($path . "/" . $name)){
-                    array_push($dirs,array("path" => $path . "/" . $name, "name" => $name));
-                }else{
-                    array_push($files,array("path" => $path . "/" . $name, "name" => $name));
+            if (!in_array($name, $exclusions)){
+                $node = array("path" => realpath($path . "/" . $name), "name" => $name);
+                if (is_dir($path . "/" . $name)) {
+                    array_push($dirs, $node);
+                } else {
+                    array_push($files, $node);
                 }
             }
         }
 
-        $final = '{"files":[{"type":"dir","path":"' . $path . '/..","name": ".."}';
+        $final = array(
+            "files" => array(),
+            "local" => array(
+                "path" => realpath($path),
+                "basename" => basename($path)
+            )
+        );
         foreach ($dirs as $line) {
-            $final .= ',{"type":"dir","path":"' . htmlentities($line["path"]) . '","name":"' . $line["name"] . '"}';
+            array_push($final["files"], array(
+                "type" => "dir",
+                "path" => $line["path"],
+                "name" => $line["name"]
+            ));
         }
         foreach ($files as $line) {
-            $final .= ',{"type":"file","path":"' . htmlentities($line["path"]) . '","name":"' . $line["name"] . '"}';
+            array_push($final["files"], array(
+                "type" => "file",
+                "path" => $line["path"],
+                "name" => $line["name"],
+                "mime" => mime_content_type($path)
+            ));
         }
-        $final .= '],';
-        $final .= '"local": {"path": "' . $path . '","basename": "' . basename($path) . '"}';
-        $final .= '}';
 
-        echo $final;
+        header("Content-Type: text/json", true, 200);
+        echo json_encode($final);
     
     }else{
-        $final = '{"files":[{"type":"dir","path":"' . $path . '/..","name": ".."}';
-        $final .= ',{"type":"file","path":"' . dirname($path) . '/' . basename($path) . '","name":"' . basename($path) . '"}';
-        $final .= '],';
-        if (basename($path) == ""){
-            $final .= '"local": {"path": "' . $path . '","basename": "/"}';
-        }else{
-            $final .= '"local": {"path": "' . $path . '","basename": "' . basename($path) . '"}';
-        }
-        $final .= '}';
-
-        header("Content-Type: text/json");
-        echo $final;
+        header("Content-Type: text/plain", true, 418);
+        die("Not a direcrory");
     }
 ?>
