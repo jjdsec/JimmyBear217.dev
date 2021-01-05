@@ -4,7 +4,7 @@
             <p>Here are some of my projects, available for demo</p>
         </header>
         <section>
-            <h2>Featured</h2>
+            <h2>Featured Projects</h2>
             <ul id="featuredProjects" class="icons-horizontal loading"></ul>
         </section>
         <section>
