@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style type="text/css">body {background-color: #ffe}body,table,form{margin:auto;text-align:center}h1{margin:10%;margin-bottom:1%}h2{margin:3% 10%}form{background-color:#fff;border:1px solid #000;padding:3%;width:max-content}input{margin:1em}</style>
         <link rel="manifest" href="manifest.json">
-        <link rel="icon" href="assets/img/folder-64.png">
+        <link rel="icon" href="assets/img/fileExplorer-72.png">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
