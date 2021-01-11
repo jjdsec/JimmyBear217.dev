@@ -1,6 +1,6 @@
 {
     "name": "FileExplorer",
-    "description": "This application allows to explore the filesystem of a remote server to list, read and download files and directories using php's native file system interation tools.",
+    "description": "Explore the server's fileSystem in php",
     "author": "JimmyBear217",
     "published": "2021/01/04",
     "icon": "FileExplorer/assets/img/fileExplorer-72.png",
