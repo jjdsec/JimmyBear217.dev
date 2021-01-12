@@ -9,29 +9,20 @@ function setCurrentMenuItem() {
     var state = {};
 
     // 2. interpret url
-    switch (url) {
-        case "/":
-        case "/index.php":
-            page = "home";
-            newlink = "/";
-            break;
-
-        case "/projects":
-        case "/projects/":
-        case "/projects/index.php":
+    switch (url.split("/")[1]) {
+        case "projects":
             page = "projects";
             newlink = "/projects";
             break;
 
-        case "/contact":
-        case "/contact/":
-        case "/contact/index.php":
+        case "contact":
             page = "contact";
             newlink = "/contact";
             break;
 
+        case "index.php":
         default:
-            page = "";
+            page = "home";
             newlink = "/"
             break;
     }
@@ -49,8 +40,10 @@ function setCurrentMenuItem() {
     });
 
     // 4. update history
-    newlink = document.location.protocol + "//" + document.location.host + newlink;
-    window.history.replaceState(state, title, newlink)
+    if (url.split("/").length <= 2) {
+        newlink = document.location.protocol + "//" + document.location.host + newlink;
+        window.history.replaceState(state, title, newlink)
+    }
 
 }
 
