@@ -1,6 +1,7 @@
 {
     "name": "FileExplorer",
     "description": "Explore the server's fileSystem in php",
+    "long_description": "This system allows you to browse and read the filesystem of the server on which it is installed. It handles serveral users with each their own passwords and settings. It also support a folder access restrictions by limiting users to a certain part of the target filesystem. in this version, the demo mode is enabled which fills in automatically the credentials for \"DemoUser\" which is configured for the purpose of this showcase.<br>FileExplorer works by calling onto a rest API and then formatting the content into a familiar view that contains the name and automatically generated icon for each file and directory with the option to open the files and browser to the directories. Additionally, the path that is written under the title is changing automatically to reflect the actual location on the hard drive where you are, and if you click on it it will ask you where you want to go, if you want to visit a specific known path.<br>If you have any question, you can <a href=\"https://jimmybear217.dev/contact\">contact me</a> and if you see a problem you can <a href=\"https://github.com/jimmybear217/FileExplorer/issues\" target=\"_blank\">raise an issue on GitHub</a>.",
     "author": "JimmyBear217",
     "published": "2021/01/04",
     "icon": "FileExplorer/assets/img/fileExplorer-72.png",
