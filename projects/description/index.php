@@ -39,7 +39,7 @@
             "name" => $project,
             "author" => "N/A",
             "description" => "Error: the manifest of this project could not be found",
-            "longdescription"
+            "long_description" => "Error: the manifest of this project could not be found"
         );
     }
 
@@ -47,26 +47,23 @@
     $PAGE_TITLE = $manifest["name"] . " - JimmyBear217.dev";
     require_once(__DIR__ . "/../../assets/inc/header.inc.php");
 
-    // write the page
+    // 5. write the page
     echo "<header><h1>" . $manifest["name"] . "</h1><p>" . $manifest["description"] . "</p></header>";
-    //<p>A project by " . $manifest["author"] . "</p>
+    echo "<section><h2>Description</h2><p>"
+        . (isset($manifest["long_description"]) ? $manifest["long_description"] : $manifest["description"] . "<br>A project by " . $manifest["author"])
+        . "</p><ul class=\"icons-horizontal\">";
+        foreach(array("author", "published") as $key) {
+            if (isset($manifest[$key]))
+                echo "<li class=\"noHover capitalize\">" . $key . ": " . $manifest[$key] . "</li>";
+        }
+    echo "</ul><article><h2>Links</h2><ul class=\"icons-horizontal loading\" id='project-links'></ul></article>";
+    echo "<script src=\"/assets/js/project-links.js\" type=\"text/javascript\" async></script>";
+    if (isset($manifest["readme"])) {
+        echo "<article><h2>README</h2><pre class=\"markdownFile loading\" data-src=\"\"></pre></article>";
+        echo "<script src=\"/assets/js/markDownReader.js\" type=\"text/javascript\" async></script>";
+    }
+    echo "</section>";
+
+    // 6. write page footer
+    require_once(__DIR__ . "/../../assets/inc/footer.inc.php");
 ?>
-    <section>
-        <h2>Description</h2>
-        <p>Consequat excepteur anim Lorem duis nostrud irure. Nostrud ut ut excepteur reprehenderit ullamco duis esse dolor esse laborum. Ad qui nisi id laborum adipisicing labore ex excepteur incididunt proident. Laborum deserunt ut aute deserunt do. Incididunt ea sint consequat tempor laborum reprehenderit sint.</p>
-        <ul class="icons-horizontal">
-            <li class="noHover">Auhtor: JimmyBear217</li>
-            <li class="noHover">Published: 2021-01-11</li>
-        </ul>
-        <article>
-            <h2>Links</h2>
-            <ul class="icons-horizontal">
-                <li>start</li>
-                <li>github</li>
-            </ul>
-        </article>
-        <article>
-            <h2>README</h2>
-            <p>this is a markdown text</p>
-        </article>
-    </section>

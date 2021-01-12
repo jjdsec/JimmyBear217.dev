@@ -71,6 +71,10 @@ article {
     color: currentColor;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 table {
     margin: auto;
 }
