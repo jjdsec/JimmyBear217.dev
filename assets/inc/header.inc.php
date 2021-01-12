@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/assets/css/main.css">
         <link rel="stylesheet" href="/assets/css/nav.css">
-        <title>JimmyBear217.dev</title>
+        <title><?php echo (isset($PAGE_TITLE) ? $PAGE_TITLE : "JimmyBear217.dev"); ?></title>
     </head>
     <body>
         <nav>
-            <h2><a href="/">JimmyBear217.dev</a></h2>
+            <h2><a href="/"><?php echo (isset($PAGE_HEADER_TITLE) ? $PAGE_HEADER_TITLE : "JimmyBear217.dev"); ?></a></h2>
             <img id="nav-btn" src="/assets/img/menu.png" height="32" width="32" onClick="toggleMenu()">
             <ul id="top-nav">
                 <li><a href="/" data-pagename="home">Home</a></li>
