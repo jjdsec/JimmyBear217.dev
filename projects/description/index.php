@@ -36,13 +36,18 @@
         error_log("No manifest could be found for " . $project, 0);
         // set default texts
         $manifest = array(
-            "name" => $project
+            "name" => $project,
+            "author" => "N/A",
         );
     }
 
-    // 4. write page header
+    // 4. write page head
     $PAGE_TITLE = $manifest["name"] . " - JimmyBear217.dev";
     require_once(__DIR__ . "/../../assets/inc/header.inc.php");
 
-    
+    // write the header
+    echo "<header><h1>" . $manifest["name"] . "</h1><p>A project by " . $manifest["author"] . "</p></header>";
 ?>
+    <section>
+        <h2>Description</h2>
+    </section>
