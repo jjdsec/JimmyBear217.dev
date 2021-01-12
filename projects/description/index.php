@@ -21,24 +21,28 @@
     $project = filter_var($_GET["repo"], FILTER_SANITIZE_STRING);
 
     // 2. check input
-    if (!file_exists(__DIR__ . "/../repo/" . $project)) {
+    $repo = __DIR__ . "/../repo/" . $project;
+    if (!file_exists($repo)) {
         header("Location: /projects", true, 302);
         die("this project cannot be found: $project");
     }
 
     // 3. read manifest
-    $manifest = "{}";
-    if (file_exists(__DIR__ . "/../repo/project-manifest.json")) {
-        $manifest = file_get_contents(__DIR__ . "/../repo/project-manifest.json");
+    $manifest = null;
+    $manifest_file = $repo . "/project-manifest.json";
+    if (file_exists($manifest_file)) {
+        $manifest = json_decode(file_get_contents($manifest_file), true);
     } else {
         error_log("No manifest could be found for " . $project, 0);
         // set default texts
-        $manifest["name"] = $project;
+        $manifest = array(
+            "name" => $project
+        );
     }
-    $manifest = json_decode($manifest, true);
 
     // 4. write page header
     $PAGE_TITLE = $manifest["name"] . " - JimmyBear217.dev";
-    $PAGE_HEADER_TITLE = $manifest["name"];
     require_once(__DIR__ . "/../../assets/inc/header.inc.php");
+
+    
 ?>
