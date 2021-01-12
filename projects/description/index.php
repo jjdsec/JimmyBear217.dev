@@ -59,7 +59,7 @@
     echo "</ul><article><h2>Links</h2><ul class=\"icons-horizontal loading\" id='project-links'></ul></article>";
     echo "<script src=\"/assets/js/project-links.js\" type=\"text/javascript\" async></script>";
     if (isset($manifest["readme"])) {
-        echo "<article><h2>README</h2><pre class=\"markdownFile loading\" data-src=\"\"></pre></article>";
+        echo "<article><h2>README</h2><pre class=\"markdownFile loading\" data-src=\"" . $manifest["readme"] . "\"></pre></article>";
         echo "<script src=\"/assets/js/markDownReader.js\" type=\"text/javascript\" async></script>";
     }
     echo "</section>";
