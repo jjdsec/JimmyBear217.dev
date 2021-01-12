@@ -4,6 +4,7 @@
     "author": "JimmyBear217",
     "published": "2021/01/10",
     "icon": "serverExplorer/assets/serverExplorer.png",
+    "readme": "serverExplorer/README.md",
     "links": [{
             "type": "start",
             "value": "serverExplorer/serverExplorer.php"
