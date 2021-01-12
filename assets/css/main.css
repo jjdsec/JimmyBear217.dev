@@ -41,6 +41,10 @@ footer a {
     text-decoration: none;
 }
 
+article {
+    padding-top: 5%;
+}
+
 .icons-horizontal {
     list-style: none;
     padding: 0;
