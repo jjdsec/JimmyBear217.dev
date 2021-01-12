@@ -41,6 +41,10 @@ footer a {
     text-decoration: none;
 }
 
+article {
+    padding-top: 5%;
+}
+
 .icons-horizontal {
     list-style: none;
     padding: 0;
@@ -67,6 +71,10 @@ footer a {
     color: currentColor;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 table {
     margin: auto;
 }
@@ -76,7 +84,7 @@ table img {
 }
 
 table .projectList-Links {
-    min-width: 100px;
+    min-width: 105px;
 }
 
 table .projectList-Links img {

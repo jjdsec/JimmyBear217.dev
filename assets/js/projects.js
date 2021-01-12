@@ -100,6 +100,18 @@ function addProject(project) {
                 break;
         }
     })
+
+    // add description link
+    var a = document.createElement("a");
+    a.setAttribute("href", "/projects/description/?repo=" + project.dir);
+    a.setAttribute("title", "View description " + project.name);
+    var img = document.createElement("img");
+    img.setAttribute("src", "/assets/img/hastag.svg");
+    img.setAttribute("height", "24");
+    img.setAttribute("width", "24");
+    img.setAttribute("alt", "Description");
+    a.appendChild(img);
+    td.appendChild(a);
     td.className = "projectList-Links";
     tr.appendChild(td);
 
