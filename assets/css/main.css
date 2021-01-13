@@ -96,6 +96,10 @@ table .projectList-name a {
     font-weight: bold;
 }
 
+table td {
+    padding: 1ch;
+}
+
 .loading {
     width: 100px;
     height: 100px;
