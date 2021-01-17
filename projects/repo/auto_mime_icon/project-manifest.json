@@ -3,7 +3,7 @@
     "description": "Automatically resolve the proper icon for a file my mime, type, name and extention",
     "author": "JimmyBear217",
     "published": "2021/01/04",
-    "icon": "",
+    "icon": "auto-mime-icon/icons/unknown.svg",
     "links": [{
             "type": "start",
             "value": "auto-mime-icon/demo.html"
