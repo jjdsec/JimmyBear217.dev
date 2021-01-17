@@ -1,0 +1,17 @@
+{
+    "name": "Auto Mime Icon",
+    "description": "Automatically resolve the proper icon for a file my mime, type, name and extention",
+    "author": "JimmyBear217",
+    "published": "2021/01/04",
+    "icon": "",
+    "links": [{
+            "type": "start",
+            "value": "auto-mime-icon/demo.html"
+        },
+        {
+            "type": "github",
+            "value": "https://github.com/jimmybear217/auto-mime-icon"
+        }
+    ],
+    "featured": false
+}
