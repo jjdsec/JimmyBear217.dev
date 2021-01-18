@@ -5,6 +5,7 @@
     "author": "JimmyBear217",
     "published": "2021/01/04",
     "icon": "FileExplorer/assets/img/fileExplorer-72.png",
+    "readme": "FileExplorer/README.md",
     "links": [{
             "type": "start",
             "value": "FileExplorer/index.php"
