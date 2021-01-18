@@ -56,7 +56,7 @@
             if (isset($manifest[$key]))
                 echo "<li class=\"noHover capitalize\">" . $key . ": " . $manifest[$key] . "</li>";
         }
-    echo "</ul><article><h2>Links</h2><ul class=\"icons-horizontal loading\" id='project-links'></ul></article>";
+    echo "</ul><article><h2>Links</h2><ul class=\"icons-horizontal loading\" id='project-links' data-project='" . $project . "'></ul></article>";
     echo "<script src=\"/assets/js/project-links.js\" type=\"text/javascript\" async></script>";
     if (isset($manifest["readme"])) {
         echo "<article><h2>README</h2><pre class=\"markdownFile loading\" data-src=\"" . $manifest["readme"] . "\"></pre></article>";
