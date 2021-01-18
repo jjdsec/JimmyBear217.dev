@@ -56,11 +56,12 @@
             if (isset($manifest[$key]))
                 echo "<li class=\"noHover capitalize\">" . $key . ": " . $manifest[$key] . "</li>";
         }
-    echo "</ul><article><h2>Links</h2><ul class=\"icons-horizontal loading\" id='project-links'></ul></article>";
+    echo "</ul><article><h2>Links</h2><ul class=\"icons-horizontal loading\" id='project-links' data-project='" . $project . "'></ul></article>";
     echo "<script src=\"/assets/js/project-links.js\" type=\"text/javascript\" async></script>";
     if (isset($manifest["readme"])) {
-        echo "<article><h2>README</h2><pre class=\"markdownFile loading\" data-src=\"" . $manifest["readme"] . "\"></pre></article>";
-        echo "<script src=\"/assets/js/markDownReader.js\" type=\"text/javascript\" async></script>";
+        echo "<article><h2>README</h2><p class=\"markdownFile loading\" data-src=\"" . $manifest["readme"] . "\" data-project='" . $project . "'></p></article>";
+        echo "<script src=\"https://cdn.jsdelivr.net/npm/marked/marked.min.js\" type=\"text/javascript\"></script>";
+        echo "<script src=\"/assets/js/project-readme.js\" type=\"text/javascript\"></script>";
     }
     echo "</section>";
 
