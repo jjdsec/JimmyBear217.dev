@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "lonefy.vscode-js-css-html-formatter",
-        "liximomo.sftp"
+        "lonefy.vscode-js-css-html-formatter"
     ]
 }
