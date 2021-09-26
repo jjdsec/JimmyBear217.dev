@@ -2,6 +2,7 @@
         <header class="largeHeader">
             <h1>JimmyBear217<span class='titleDash'> - </span><br class='reverseTitleDash' />Web Engineer</h1>
             <p>Using today's web technologies to create tomorrow's applications</p>
+            <a class="cta" href="/contact">Contact me</a>
         </header>
         <section>
             <ul class="icons-horizontal">
